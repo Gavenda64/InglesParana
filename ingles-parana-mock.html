@@ -1,0 +1,2902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#131316">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<title>Inglês Paraná</title>
+
+<style>
+
+  :root{
+    --ink:#131316;
+    --ink-2:#35353a;
+    --purple:#8b5cf6;
+    --purple-dark:#7c3aed;
+    --purple-soft:#b794f6;
+    --lavender:#f2ecfb;
+    --pink:#ef4f8d;
+    --gradient:linear-gradient(90deg,var(--pink),var(--purple));
+    --gray-700:#4b4b52;
+    --gray-500:#7c7c85;
+    --gray-300:#d8d8dd;
+    --gray-200:#e9e9ec;
+    --gray-100:#f3f3f5;
+    --white:#ffffff;
+    --red:#dc2626;
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  html,
+  body{
+    margin:0;
+    padding:0;
+  }
+
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:#e9e9ee;
+    color:var(--ink);
+    -webkit-tap-highlight-color:transparent;
+    overflow-x:hidden;
+  }
+
+  button,
+  input,
+  select{
+    font-family:inherit;
+  }
+
+  button{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  a{
+    color:inherit;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  a:focus-visible{
+    outline:2px solid var(--purple);
+    outline-offset:2px;
+  }
+
+
+  /* =========================================================
+     APP
+  ========================================================= */
+
+  .app-shell{
+    max-width:480px;
+    margin:0 auto;
+    min-height:100vh;
+    background:var(--white);
+    position:relative;
+    box-shadow:0 0 60px rgba(0,0,0,.14);
+  }
+
+  .screen{
+    display:none;
+  }
+
+  .screen.active{
+    display:block;
+    animation:fadeIn .2s ease;
+  }
+
+  @keyframes fadeIn{
+    from{
+      opacity:0;
+    }
+
+    to{
+      opacity:1;
+    }
+  }
+
+
+  /* =========================================================
+     IMAGENS SUBSTITUÍVEIS
+  ========================================================= */
+
+  .img-slot{
+    position:relative;
+    display:inline-block;
+  }
+
+  .img-hint{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--gray-500);
+    font-weight:600;
+    line-height:1.35;
+  }
+
+  .img-hint.show{
+    display:flex;
+  }
+
+
+  /* LOGO */
+
+  .logo-img{
+    height:28px;
+    width:auto;
+    max-width:170px;
+    display:block;
+  }
+
+  .logo-hint{
+    height:28px;
+    width:150px;
+    font-size:9.5px;
+    background:var(--gray-100);
+    border-radius:6px;
+    color:var(--gray-700);
+    padding:2px 6px;
+  }
+
+
+  /* EFEKTA */
+
+  .efekta-img{
+    height:26px;
+    width:auto;
+    max-width:160px;
+    display:block;
+  }
+
+  .efekta-hint{
+    height:26px;
+    width:150px;
+    font-size:9.5px;
+    background:#232327;
+    border-radius:6px;
+    color:var(--gray-300);
+    padding:2px 6px;
+  }
+
+
+  /* =========================================================
+     HEADER
+  ========================================================= */
+
+  .top-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 18px;
+    border-bottom:1px solid var(--gray-200);
+    background:var(--white);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+
+  .hamburger-btn{
+    width:34px;
+    height:34px;
+    border:none;
+    background:none;
+    cursor:pointer;
+    padding:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:5px;
+  }
+
+  .hamburger-btn span{
+    width:20px;
+    height:2.5px;
+    background:var(--ink);
+    border-radius:2px;
+  }
+
+
+  /* =========================================================
+     USER INFO
+  ========================================================= */
+
+  .user-bar-row{
+    background:var(--ink);
+    color:var(--white);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+    padding:16px 18px;
+  }
+
+  .user-name{
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.3px;
+    text-transform:uppercase;
+  }
+
+  .progress-badge{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    flex-shrink:0;
+
+    border:1.5px solid var(--purple);
+    color:var(--purple-soft);
+
+    border-radius:10px;
+
+    padding:7px 13px;
+
+    font-weight:700;
+    font-size:14px;
+
+    background:none;
+    cursor:pointer;
+  }
+
+  .user-bar-stack{
+    background:var(--ink);
+    color:var(--white);
+
+    padding:16px 18px 20px;
+  }
+
+  .user-bar-stack .user-name{
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .level-badge{
+    display:inline-block;
+
+    background:var(--purple);
+    color:var(--ink);
+
+    border-radius:9px;
+
+    padding:5px 14px;
+
+    font-weight:700;
+    font-size:12.5px;
+
+    letter-spacing:.3px;
+    text-transform:uppercase;
+  }
+
+
+  /* =========================================================
+     HERO
+     
+     Imagem original:
+     530 x 690
+     
+     Aspect ratio:
+     530 / 690
+  ========================================================= */
+
+  .hero-wrap{
+    padding:16px;
+  }
+
+  .hero-card{
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:530 / 690;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    touch-action:none;
+    user-select:none;
+    -webkit-user-select:none;
+
+    background:#17171a;
+  }
+
+  .hero-slide{
+    position:absolute;
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity .6s ease;
+
+    overflow:hidden;
+
+    background:
+      linear-gradient(
+        160deg,
+        #3d2438 0%,
+        #241621 55%,
+        #120f10 100%
+      );
+  }
+
+  .hero-slide.active{
+    opacity:1;
+  }
+
+  .hero-slide img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    user-select:none;
+    -webkit-user-drag:none;
+  }
+
+  .hero-image-hint{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:20px;
+
+    color:rgba(255,255,255,.8);
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    background:
+      linear-gradient(
+        160deg,
+        #3d2438 0%,
+        #241621 55%,
+        #120f10 100%
+      );
+  }
+
+  .hero-image-hint.show{
+    display:flex;
+  }
+
+
+  /* =========================================================
+     LIÇÃO ATUAL
+     
+     Imagem original:
+     517 x 402
+     
+     Aspect ratio:
+     517 / 402
+  ========================================================= */
+
+  .current-lesson{
+    padding:4px 16px 28px;
+  }
+
+  .section-title{
+    font-size:21px;
+    font-weight:700;
+
+    margin:0 0 14px;
+
+    color:var(--ink);
+  }
+
+  .lesson-card{
+    border-radius:20px;
+    overflow:hidden;
+
+    background:var(--gray-100);
+
+    box-shadow:
+      0 6px 18px rgba(0,0,0,.06);
+  }
+
+  .lesson-thumb{
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:517 / 402;
+
+    overflow:hidden;
+
+    background:
+      linear-gradient(
+        135deg,
+        #1b2a4a,
+        #2c1b3d 60%,
+        #111
+      );
+  }
+
+  .lesson-thumb img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+  }
+
+  .lesson-image-hint{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:20px;
+
+    color:rgba(255,255,255,.82);
+
+    font-size:14px;
+    line-height:1.5;
+
+    background:
+      linear-gradient(
+        135deg,
+        #1b2a4a,
+        #2c1b3d 60%,
+        #111
+      );
+  }
+
+  .lesson-image-hint.show{
+    display:flex;
+  }
+
+  .lesson-info{
+    padding:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+  }
+
+  .lesson-info p{
+    margin:0;
+
+    font-weight:600;
+    font-size:15px;
+  }
+
+  .btn-dark-pill{
+    background:var(--ink);
+    color:var(--white);
+
+    border:none;
+    border-radius:999px;
+
+    padding:10px 18px;
+
+    font-weight:600;
+    font-size:13px;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+  }
+
+
+  /* =========================================================
+     DRAWER MENU
+  ========================================================= */
+
+  .drawer-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:100;
+
+    visibility:hidden;
+    pointer-events:none;
+  }
+
+  .drawer-overlay.open{
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  .drawer-backdrop{
+    position:absolute;
+    inset:0;
+
+    background:rgba(8,8,10,.6);
+
+    opacity:0;
+
+    transition:opacity .3s ease;
+  }
+
+  .drawer-overlay.open .drawer-backdrop{
+    opacity:1;
+  }
+
+  .drawer-panel{
+    position:absolute;
+
+    top:0;
+    right:0;
+    bottom:0;
+
+    width:78%;
+    max-width:360px;
+
+    background:var(--white);
+
+    display:flex;
+    flex-direction:column;
+
+    transform:translateX(100%);
+
+    transition:
+      transform .32s cubic-bezier(.32,.72,0,1);
+  }
+
+  .drawer-overlay.open .drawer-panel{
+    transform:translateX(0);
+  }
+
+  .drawer-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:16px 18px;
+
+    border-bottom:1px solid var(--gray-200);
+
+    flex-shrink:0;
+  }
+
+  .icon-btn{
+    width:32px;
+    height:32px;
+
+    border:none;
+    background:none;
+
+    cursor:pointer;
+    padding:0;
+
+    color:var(--ink);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .drawer-nav{
+    flex:1;
+    overflow-y:auto;
+  }
+
+  .drawer-item{
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+    width:100%;
+
+    text-align:left;
+
+    padding:16px 18px;
+
+    font-size:15.5px;
+    font-weight:600;
+
+    border:none;
+    background:none;
+
+    border-bottom:1px solid var(--gray-200);
+
+    cursor:pointer;
+
+    color:var(--ink);
+  }
+
+  .drawer-item.active{
+    background:var(--lavender);
+  }
+
+  .flex-fill{
+    flex:1 1 auto;
+  }
+
+  .chev-icon{
+    transition:transform .2s ease;
+    flex-shrink:0;
+  }
+
+  .chev-icon.rotated{
+    transform:rotate(180deg);
+  }
+
+  .drawer-submenu{
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:max-height .25s ease;
+  }
+
+  .drawer-submenu.open{
+    max-height:220px;
+  }
+
+  .drawer-subitem{
+    display:block;
+
+    width:100%;
+
+    text-align:left;
+
+    padding:13px 18px 13px 30px;
+
+    font-size:14.5px;
+    font-weight:500;
+
+    color:var(--gray-700);
+
+    border:none;
+    background:none;
+
+    cursor:pointer;
+  }
+
+  .drawer-subitem.active{
+    color:var(--purple-dark);
+  }
+
+  .sair-btn{
+    margin:18px;
+
+    padding:13px;
+
+    border-radius:999px;
+
+    border:1.5px solid var(--red);
+
+    background:var(--white);
+
+    color:var(--red);
+
+    font-weight:700;
+    font-size:15px;
+
+    cursor:pointer;
+
+    flex-shrink:0;
+  }
+
+
+  /* =========================================================
+     TOAST
+  ========================================================= */
+
+  .toast{
+    position:fixed;
+
+    left:50%;
+    bottom:26px;
+
+    transform:translate(-50%,16px);
+
+    background:var(--ink);
+    color:var(--white);
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    font-size:13.5px;
+    font-weight:600;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+      opacity .2s ease,
+      transform .2s ease;
+
+    z-index:200;
+
+    max-width:82%;
+
+    text-align:center;
+
+    box-shadow:
+      0 8px 24px rgba(0,0,0,.25);
+  }
+
+  .toast.show{
+    opacity:1;
+
+    transform:translate(-50%,0);
+  }
+
+
+  /* =========================================================
+     MINHA CONTA
+  ========================================================= */
+
+  .page-body{
+    padding:22px 18px 50px;
+  }
+
+  .tab-select-wrap{
+    position:relative;
+
+    color:var(--gray-700);
+
+    margin-bottom:32px;
+  }
+
+  .tab-select{
+    width:100%;
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    border:1px solid var(--gray-300);
+
+    border-radius:10px;
+
+    padding:13px 40px 13px 14px;
+
+    font-size:15px;
+    font-weight:500;
+
+    color:var(--ink);
+
+    background:var(--white);
+
+    cursor:pointer;
+  }
+
+  .select-wrap{
+    position:relative;
+    color:var(--gray-700);
+  }
+
+  .select-wrap .chev-icon,
+  .tab-select-wrap .chev-icon{
+    position:absolute;
+
+    right:14px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    pointer-events:none;
+  }
+
+  .muted-text{
+    color:var(--ink-2);
+
+    font-weight:500;
+
+    font-size:14.5px;
+
+    line-height:1.6;
+
+    margin:0 0 18px;
+  }
+
+  .link{
+    text-decoration:underline;
+
+    font-weight:600;
+
+    background:none;
+    border:none;
+
+    padding:0;
+
+    font-size:inherit;
+    font-family:inherit;
+
+    cursor:pointer;
+
+    color:inherit;
+  }
+
+  .required-note{
+    font-size:13.5px;
+
+    color:var(--gray-500);
+
+    margin:0 0 28px;
+  }
+
+  .field{
+    margin-bottom:24px;
+  }
+
+  .field label{
+    display:block;
+
+    font-weight:600;
+
+    font-size:14.5px;
+
+    margin-bottom:8px;
+  }
+
+  .field input{
+    width:100%;
+
+    padding:15px 14px;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    color:var(--ink);
+  }
+
+  .input-disabled{
+    background:var(--gray-100);
+
+    border:1px solid var(--gray-100);
+
+    color:var(--gray-500);
+  }
+
+  .input-editable{
+    background:var(--white);
+
+    border:1px solid var(--gray-300);
+  }
+
+  .input-editable::placeholder{
+    color:var(--gray-500);
+  }
+
+  .input-select{
+    width:100%;
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    background:var(--white);
+
+    border:1.5px solid var(--ink);
+
+    border-radius:10px;
+
+    padding:15px 40px 15px 14px;
+
+    font-size:15px;
+    font-family:inherit;
+
+    color:var(--ink);
+
+    cursor:pointer;
+  }
+
+  .btn-outline-dark{
+    width:100%;
+
+    margin-top:14px;
+
+    padding:14px;
+
+    border-radius:999px;
+
+    border:1.5px solid var(--ink-2);
+
+    background:var(--white);
+
+    color:var(--ink-2);
+
+    font-weight:600;
+    font-size:15px;
+
+    cursor:pointer;
+  }
+
+
+  /* =========================================================
+     PROGRESSO
+  ========================================================= */
+
+  .page-title-bar{
+    text-align:center;
+
+    padding:16px;
+
+    font-weight:600;
+
+    font-size:15.5px;
+
+    border-bottom:1px solid var(--gray-200);
+
+    position:sticky;
+    top:57px;
+    z-index:9;
+    background:var(--white);
+  }
+
+  .section-lavender{
+    background:var(--lavender);
+
+    padding:36px 18px;
+  }
+
+  .section-white{
+    background:var(--white);
+
+    padding:36px 18px;
+  }
+
+  .card-dark{
+    background:var(--ink);
+
+    border-radius:18px;
+
+    padding:26px 22px;
+
+    color:var(--white);
+  }
+
+  .pill-white{
+    display:inline-block;
+
+    background:var(--white);
+    color:var(--ink);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    margin-bottom:18px;
+  }
+
+  .pill-dark{
+    display:inline-block;
+
+    background:var(--ink);
+    color:var(--white);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    margin-bottom:18px;
+  }
+
+  .stat-line{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:16px;
+
+    gap:12px;
+  }
+
+  .stat-label{
+    font-weight:600;
+    font-size:14.5px;
+  }
+
+  .stat-value-purple{
+    color:var(--purple-soft);
+
+    font-weight:700;
+
+    font-size:15px;
+
+    white-space:nowrap;
+  }
+
+  .stat-value-white{
+    font-weight:600;
+
+    font-size:14px;
+
+    white-space:nowrap;
+  }
+
+  .card-heading{
+    font-size:18px;
+
+    font-weight:700;
+
+    margin:0 0 18px;
+  }
+
+  .progress-track{
+    height:10px;
+
+    background:rgba(255,255,255,.16);
+
+    border-radius:999px;
+
+    overflow:hidden;
+  }
+
+  .progress-fill{
+    height:100%;
+
+    background:var(--gradient);
+
+    border-radius:999px;
+  }
+
+  .card-light{
+    background:var(--white);
+
+    border-radius:18px;
+
+    padding:26px 22px;
+
+    box-shadow:
+      0 4px 24px rgba(0,0,0,.08);
+
+    border:1px solid var(--gray-100);
+  }
+
+  .card-heading-dark{
+    font-size:16.5px;
+
+    font-weight:700;
+
+    margin:0 0 24px;
+
+    color:var(--ink);
+
+    line-height:1.4;
+  }
+
+  .stat-row{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:var(--gray-100);
+
+    border-radius:14px;
+
+    padding:20px 18px;
+
+    margin-bottom:14px;
+
+    gap:10px;
+  }
+
+  .stat-row:last-child{
+    margin-bottom:0;
+  }
+
+  .stat-row-left{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:600;
+
+    font-size:15px;
+
+    color:var(--ink);
+  }
+
+  .badge-dark{
+    background:var(--ink);
+
+    color:var(--white);
+
+    border-radius:12px;
+
+    padding:10px 20px;
+
+    font-weight:700;
+
+    font-size:23px;
+
+    min-width:52px;
+
+    text-align:center;
+  }
+
+
+  /* =========================================================
+     FOOTER
+  ========================================================= */
+
+  .footer-black{
+    background:var(--ink);
+
+    color:var(--white);
+
+    padding:38px 24px;
+
+    text-align:center;
+  }
+
+  .footer-links{
+    font-size:13.5px;
+
+    margin:0 0 8px;
+
+    color:var(--gray-300);
+  }
+
+  .footer-links a,
+  .footer-links button{
+    text-decoration:underline;
+
+    background:none;
+    border:none;
+
+    color:inherit;
+
+    font-size:inherit;
+    font-family:inherit;
+
+    cursor:pointer;
+
+    padding:0;
+  }
+
+  .copyright{
+    font-size:12px;
+
+    color:var(--gray-500);
+
+    line-height:1.5;
+
+    margin:18px 0 22px;
+  }
+
+  .lang-pill{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#232327;
+
+    color:var(--white);
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:11px 20px;
+
+    font-weight:600;
+
+    font-size:13.5px;
+
+    cursor:pointer;
+  }
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     ÍCONES SVG
+========================================================= -->
+
+<svg style="display:none" aria-hidden="true">
+
+  <symbol id="ic-chevron" viewBox="0 0 24 24">
+
+    <polyline
+      points="6 9 12 15 18 9"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+  </symbol>
+
+
+  <symbol id="ic-close" viewBox="0 0 24 24">
+
+    <line
+      x1="6"
+      y1="6"
+      x2="18"
+      y2="18"
+      stroke="currentColor"
+      stroke-width="2.3"
+      stroke-linecap="round"
+    />
+
+    <line
+      x1="18"
+      y1="6"
+      x2="6"
+      y2="18"
+      stroke="currentColor"
+      stroke-width="2.3"
+      stroke-linecap="round"
+    />
+
+  </symbol>
+
+
+  <symbol id="ic-book" viewBox="0 0 24 24">
+
+    <path
+      d="M12 6.2c-1.5-1.2-3.6-2-6-2v13.2c2.4 0 4.5.8 6 2 1.5-1.2 3.6-2 6-2V4.2c-2.4 0-4.5.8-6 2z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <line
+      x1="12"
+      y1="6.2"
+      x2="12"
+      y2="19.4"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+    />
+
+  </symbol>
+
+
+  <symbol id="ic-list" viewBox="0 0 24 24">
+
+    <rect
+      x="5"
+      y="3"
+      width="14"
+      height="18"
+      rx="2.4"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+    />
+
+    <line
+      x1="8"
+      y1="8"
+      x2="16"
+      y2="8"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+    />
+
+    <line
+      x1="8"
+      y1="12"
+      x2="16"
+      y2="12"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+    />
+
+    <line
+      x1="8"
+      y1="16"
+      x2="12.5"
+      y2="16"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+    />
+
+  </symbol>
+
+
+  <symbol id="ic-check" viewBox="0 0 24 24">
+
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+    />
+
+    <polyline
+      points="8 12.2 10.8 15 16 9.3"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+  </symbol>
+
+
+  <symbol id="ic-sparkle" viewBox="0 0 24 24">
+
+    <defs>
+
+      <linearGradient
+        id="sparkleGrad"
+        x1="0"
+        y1="0"
+        x2="24"
+        y2="24"
+        gradientUnits="userSpaceOnUse"
+      >
+
+        <stop
+          offset="0"
+          stop-color="#ef4f8d"
+        />
+
+        <stop
+          offset="1"
+          stop-color="#8b5cf6"
+        />
+
+      </linearGradient>
+
+    </defs>
+
+    <path
+      d="M12 2 L14.1 9.2 L21.5 11 L14.1 12.8 L12 20 L9.9 12.8 L2.5 11 L9.9 9.2 Z"
+      fill="url(#sparkleGrad)"
+    />
+
+  </symbol>
+
+</svg>
+
+
+<div class="app-shell">
+
+
+  <!-- =======================================================
+       INÍCIO
+  ======================================================== -->
+
+  <div
+    id="screen-inicio"
+    class="screen active"
+  >
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+      <span class="img-slot">
+
+        <img
+          src="images/logo.png"
+          alt="Inglês Paraná"
+          class="logo-img"
+          onerror="imgFallback(this)"
+        >
+
+        <span class="img-hint logo-hint">
+          Logo<br>
+          images/logo.png
+        </span>
+
+      </span>
+
+
+      <button
+        type="button"
+        class="hamburger-btn"
+        onclick="openMenu()"
+        aria-label="Abrir menu"
+      >
+
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </header>
+
+
+    <!-- USUÁRIO -->
+
+    <div class="user-bar-row">
+
+      <span class="user-name">
+        Joao Pedro Gavenda Siewert
+      </span>
+
+
+      <button
+        type="button"
+        class="progress-badge"
+        data-target="progresso"
+        onclick="navigate('progresso')"
+      >
+
+        <svg
+          width="15"
+          height="15"
+        >
+          <use href="#ic-book"></use>
+        </svg>
+
+        <span>
+          2/9
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <div class="hero-wrap">
+
+      <div
+        class="hero-card"
+        id="hero-card"
+      >
+
+
+        <!-- HERO 1 -->
+
+        <div class="hero-slide active">
+
+          <img
+            src="images/hero-1.jpg"
+            alt=""
+            onerror="heroImageFallback(this)"
+          >
+
+          <div class="hero-image-hint">
+
+            Substitua por<br>
+
+            <strong>
+              images/hero-1.jpg
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- HERO 2 -->
+
+        <div class="hero-slide">
+
+          <img
+            src="images/hero-2.jpg"
+            alt=""
+            onerror="heroImageFallback(this)"
+          >
+
+          <div class="hero-image-hint">
+
+            Substitua por<br>
+
+            <strong>
+              images/hero-2.jpg
+            </strong>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- LIÇÃO ATUAL -->
+
+    <section class="current-lesson">
+
+      <h2 class="section-title">
+        Sua lição atual
+      </h2>
+
+
+      <div class="lesson-card">
+
+
+        <!-- IMAGEM DA LIÇÃO -->
+
+        <div class="lesson-thumb">
+
+          <img
+            src="images/lesson-current.jpg"
+            alt="Imagem da lição atual"
+            onerror="lessonImageFallback(this)"
+          >
+
+          <div class="lesson-image-hint">
+
+            Substitua por<br>
+
+            <strong>
+              images/lesson-current.jpg
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- INFORMAÇÕES -->
+
+        <div class="lesson-info">
+
+          <p>
+            Continue de onde parou
+          </p>
+
+
+          <button
+            type="button"
+            class="btn-dark-pill"
+            onclick="toast('Abrindo lição... (demonstração)')"
+          >
+            Continuar
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- =======================================================
+       MINHA CONTA
+  ======================================================== -->
+
+  <div
+    id="screen-conta"
+    class="screen"
+  >
+
+
+    <header class="top-header">
+
+      <span class="img-slot">
+
+        <img
+          src="images/logo.png"
+          alt="Inglês Paraná"
+          class="logo-img"
+          onerror="imgFallback(this)"
+        >
+
+        <span class="img-hint logo-hint">
+          Logo<br>
+          images/logo.png
+        </span>
+
+      </span>
+
+
+      <button
+        type="button"
+        class="hamburger-btn"
+        onclick="openMenu()"
+        aria-label="Abrir menu"
+      >
+
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </header>
+
+
+    <div class="user-bar-stack">
+
+      <span class="user-name">
+        Joao Pedro Gavenda Siewert
+      </span>
+
+      <span class="level-badge">
+        Nível 11
+      </span>
+
+    </div>
+
+
+    <div class="page-body">
+
+
+      <div class="tab-select-wrap">
+
+        <select
+          class="tab-select"
+          onchange="handleTabSelect(this.value)"
+        >
+
+          <option
+            value="conta"
+            selected
+          >
+            Minha conta
+          </option>
+
+          <option value="progresso">
+            Progresso e metas
+          </option>
+
+          <option value="suporte">
+            Suporte
+          </option>
+
+        </select>
+
+
+        <svg
+          class="chev-icon"
+          width="16"
+          height="16"
+        >
+
+          <use href="#ic-chevron"></use>
+
+        </svg>
+
+      </div>
+
+
+      <h2 class="section-title">
+        Detalhes pessoais
+      </h2>
+
+
+      <p class="muted-text">
+
+        Consulte nossa
+
+        <button
+          type="button"
+          class="link"
+          onclick="toast('Abrindo Política de Privacidade... (demonstração)')"
+        >
+          Política de Privacidade
+        </button>
+
+        para saber como nossas informações pessoais são tratadas.
+
+      </p>
+
+
+      <p class="required-note">
+        Campos marcados com * são obrigatórios.
+      </p>
+
+
+      <div class="field">
+
+        <label for="nome-input">
+          Nome*
+        </label>
+
+        <input
+          id="nome-input"
+          type="text"
+          class="input-disabled"
+          value="JOAO"
+          readonly
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="sobrenome-input">
+          Sobrenome*
+        </label>
+
+        <input
+          id="sobrenome-input"
+          type="text"
+          class="input-disabled"
+          value="PEDRO GAVENDA SIEWERT"
+          readonly
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="fuso-select">
+          Fuso horário*
+        </label>
+
+
+        <div class="select-wrap">
+
+          <select
+            id="fuso-select"
+            class="input-select"
+          >
+
+            <option selected>
+              (UTC-03:00) Brasília
+            </option>
+
+            <option>
+              (UTC-04:00) Amazonas
+            </option>
+
+            <option>
+              (UTC-05:00) Acre
+            </option>
+
+          </select>
+
+
+          <svg
+            class="chev-icon"
+            width="16"
+            height="16"
+          >
+            <use href="#ic-chevron"></use>
+          </svg>
+
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="telefone-input">
+          Número de telefone
+        </label>
+
+        <input
+          id="telefone-input"
+          type="tel"
+          class="input-editable"
+          placeholder="Número de telefone"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="email-input">
+          Endereço de e-mail
+        </label>
+
+        <input
+          id="email-input"
+          type="email"
+          class="input-disabled"
+          value="joao.siewert@escola.pr.gov.br"
+          readonly
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="idioma-select">
+          Idioma do e-mail*
+        </label>
+
+
+        <div class="select-wrap">
+
+          <select
+            id="idioma-select"
+            class="input-select"
+          >
+
+            <option selected>
+              Português
+            </option>
+
+            <option>
+              English
+            </option>
+
+            <option>
+              Español
+            </option>
+
+          </select>
+
+
+          <svg
+            class="chev-icon"
+            width="16"
+            height="16"
+          >
+
+            <use href="#ic-chevron"></use>
+
+          </svg>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="btn-outline-dark"
+        onclick="toast('Informações atualizadas (demonstração)')"
+      >
+        Atualizar informações
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       PROGRESSO
+  ======================================================== -->
+
+  <div
+    id="screen-progresso"
+    class="screen"
+  >
+
+
+    <header class="top-header">
+
+      <span class="img-slot">
+
+        <img
+          src="images/logo.png"
+          alt="Inglês Paraná"
+          class="logo-img"
+          onerror="imgFallback(this)"
+        >
+
+        <span class="img-hint logo-hint">
+          Logo<br>
+          images/logo.png
+        </span>
+
+      </span>
+
+
+      <button
+        type="button"
+        class="hamburger-btn"
+        onclick="openMenu()"
+        aria-label="Abrir menu"
+      >
+
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </header>
+
+
+    <div class="page-title-bar">
+      Progresso e metas
+    </div>
+
+
+    <section class="section-lavender">
+
+      <h2 class="section-title">
+        Seus objetivos de estudo
+      </h2>
+
+
+      <div class="card-dark">
+
+        <span class="pill-white">
+          Objetivos de estudo
+        </span>
+
+
+        <div class="stat-line">
+
+          <span class="stat-label">
+            Unidades de autoestudo
+          </span>
+
+          <span class="stat-value-purple">
+            2/9
+          </span>
+
+        </div>
+
+
+        <div class="progress-track">
+
+          <div
+            class="progress-fill"
+            style="width:22%"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section-white">
+
+      <h2 class="section-title">
+        Sua progressão
+      </h2>
+
+
+      <div class="card-dark">
+
+        <span class="pill-white">
+          Progressão de nível
+        </span>
+
+
+        <h3 class="card-heading">
+          Inglês para Escolas
+        </h3>
+
+
+        <div class="stat-line">
+
+          <span class="stat-label">
+            Nível Efekta 11: Upper Intermediate
+          </span>
+
+          <span class="stat-value-white">
+            Nível 12
+          </span>
+
+        </div>
+
+
+        <div class="progress-track">
+
+          <div
+            class="progress-fill"
+            style="width:48%"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      class="section-white"
+      style="padding-top:0"
+    >
+
+      <h2 class="section-title">
+        Seu histórico de estudos
+      </h2>
+
+
+      <div class="card-light">
+
+        <span class="pill-dark">
+          Atividade total de estudo
+        </span>
+
+
+        <h3 class="card-heading-dark">
+          Aqui está o que você completou até agora.
+        </h3>
+
+
+        <div class="stat-row">
+
+          <span class="stat-row-left">
+
+            <svg
+              width="18"
+              height="18"
+            >
+              <use href="#ic-book"></use>
+            </svg>
+
+            <span>
+              Lições de autoestudo
+            </span>
+
+          </span>
+
+
+          <span class="badge-dark">
+            10
+          </span>
+
+        </div>
+
+
+        <div class="stat-row">
+
+          <span class="stat-row-left">
+
+            <svg
+              width="18"
+              height="18"
+            >
+              <use href="#ic-list"></use>
+            </svg>
+
+            <span>
+              Unidades de autoestudo
+            </span>
+
+          </span>
+
+
+          <span class="badge-dark">
+            2
+          </span>
+
+        </div>
+
+
+        <div class="stat-row">
+
+          <span class="stat-row-left">
+
+            <svg
+              width="18"
+              height="18"
+            >
+              <use href="#ic-check"></use>
+            </svg>
+
+            <span>
+              Resultados dos testes
+            </span>
+
+          </span>
+
+
+          <span class="badge-dark">
+            1
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer class="footer-black">
+
+
+      <p style="margin:0 0 22px">
+
+        <span class="img-slot">
+
+          <img
+            src="images/efekta-logo.png"
+            alt="Efekta"
+            class="efekta-img"
+            onerror="imgFallback(this)"
+          >
+
+          <span class="img-hint efekta-hint">
+            Efekta<br>
+            images/efekta-logo.png
+          </span>
+
+        </span>
+
+      </p>
+
+
+      <p class="footer-links">
+
+        <button
+          type="button"
+          onclick="toast('Abrindo Política de Privacidade... (demonstração)')"
+        >
+          Política de Privacidade
+        </button>
+
+        &nbsp;|&nbsp;
+
+        <button
+          type="button"
+          onclick="toast('Abrindo Termos e Condições... (demonstração)')"
+        >
+          Termos e Condições
+        </button>
+
+      </p>
+
+
+      <p class="footer-links">
+
+        <button
+          type="button"
+          onclick="toast('Em breve por aqui 🙂')"
+        >
+          Suporte
+        </button>
+
+      </p>
+
+
+      <p class="copyright">
+
+        Copyright © 2026 Efekta Education Ltd.<br>
+
+        Todos os direitos reservados.
+
+      </p>
+
+
+      <button
+        type="button"
+        class="lang-pill"
+        onclick="toast('Idioma: Português (demonstração)')"
+      >
+
+        <span>
+          Português
+        </span>
+
+        <svg
+          class="chev-icon rotated"
+          width="14"
+          height="14"
+        >
+
+          <use href="#ic-chevron"></use>
+
+        </svg>
+
+      </button>
+
+
+    </footer>
+
+  </div>
+
+
+  <!-- =======================================================
+       MENU LATERAL
+  ======================================================== -->
+
+  <div
+    class="drawer-overlay"
+    id="drawer-overlay"
+  >
+
+
+    <div
+      class="drawer-backdrop"
+      onclick="closeMenu()"
+    ></div>
+
+
+    <div class="drawer-panel">
+
+
+      <div class="drawer-header">
+
+        <span class="img-slot">
+
+          <img
+            src="images/logo.png"
+            alt="Inglês Paraná"
+            class="logo-img"
+            onerror="imgFallback(this)"
+          >
+
+          <span class="img-hint logo-hint">
+            Logo<br>
+            images/logo.png
+          </span>
+
+        </span>
+
+
+        <button
+          type="button"
+          class="icon-btn"
+          onclick="closeMenu()"
+          aria-label="Fechar menu"
+        >
+
+          <svg
+            width="20"
+            height="20"
+          >
+
+            <use href="#ic-close"></use>
+
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <nav class="drawer-nav">
+
+
+        <button
+          type="button"
+          class="drawer-item active"
+          data-target="inicio"
+          onclick="navigate('inicio')"
+        >
+          Início
+        </button>
+
+
+        <button
+          type="button"
+          class="drawer-item"
+          data-target="progresso"
+          onclick="navigate('progresso')"
+        >
+          Lições
+        </button>
+
+
+        <button
+          type="button"
+          class="drawer-item"
+          onclick="toast('Em breve por aqui ✨')"
+        >
+
+          <span>
+            Ferramentas de IA
+          </span>
+
+
+          <svg
+            width="15"
+            height="15"
+          >
+
+            <use href="#ic-sparkle"></use>
+
+          </svg>
+
+        </button>
+
+
+        <button
+          type="button"
+          class="drawer-item"
+          onclick="toggleEu()"
+        >
+
+          <span class="flex-fill">
+            Eu
+          </span>
+
+
+          <svg
+            id="eu-chevron"
+            class="chev-icon rotated"
+            width="16"
+            height="16"
+          >
+
+            <use href="#ic-chevron"></use>
+
+          </svg>
+
+        </button>
+
+
+        <div
+          class="drawer-submenu open"
+          id="eu-submenu"
+        >
+
+
+          <button
+            type="button"
+            class="drawer-subitem"
+            data-target="conta"
+            onclick="navigate('conta')"
+          >
+            Minha conta
+          </button>
+
+
+          <button
+            type="button"
+            class="drawer-subitem"
+            data-target="progresso"
+            onclick="navigate('progresso')"
+          >
+            Progresso e metas
+          </button>
+
+
+          <button
+            type="button"
+            class="drawer-subitem"
+            onclick="toast('Em breve por aqui 🙂')"
+          >
+            Suporte
+          </button>
+
+
+        </div>
+
+      </nav>
+
+
+      <button
+        type="button"
+        class="sair-btn"
+        onclick="handleSair()"
+      >
+        Sair
+      </button>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+</div>
+
+
+<script>
+
+
+  /* =========================================================
+     HELPERS
+  ========================================================= */
+
+  function $(sel){
+    return document.querySelector(sel);
+  }
+
+
+  function $all(sel){
+    return document.querySelectorAll(sel);
+  }
+
+
+  /* =========================================================
+     MENU
+  ========================================================= */
+
+  function openMenu(){
+
+    $('#drawer-overlay').classList.add('open');
+
+    document.body.style.overflow = 'hidden';
+
+  }
+
+
+  function closeMenu(){
+
+    $('#drawer-overlay').classList.remove('open');
+
+    document.body.style.overflow = '';
+
+  }
+
+
+  document.addEventListener(
+    'keydown',
+    function(e){
+
+      if(e.key === 'Escape'){
+        closeMenu();
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     MENU EU
+  ========================================================= */
+
+  let euOpen = true;
+
+
+  function toggleEu(){
+
+    euOpen = !euOpen;
+
+
+    $('#eu-submenu').classList.toggle(
+      'open',
+      euOpen
+    );
+
+
+    $('#eu-chevron').classList.toggle(
+      'rotated',
+      euOpen
+    );
+
+  }
+
+
+  /* =========================================================
+     NAVEGAÇÃO
+  ========================================================= */
+
+  function navigate(id){
+
+    $all('.screen').forEach(
+      function(s){
+
+        s.classList.remove('active');
+
+      }
+    );
+
+
+    const screen =
+      document.getElementById(
+        'screen-' + id
+      );
+
+
+    if(screen){
+      screen.classList.add('active');
+    }
+
+
+    closeMenu();
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+
+    updateActiveNav(id);
+
+  }
+
+
+  function updateActiveNav(id){
+
+    $all('[data-target]').forEach(
+      function(el){
+
+        el.classList.toggle(
+          'active',
+          el.dataset.target === id
+        );
+
+      }
+    );
+
+  }
+
+
+  function handleTabSelect(val){
+
+    if(val === 'suporte'){
+
+      toast(
+        'Em breve por aqui 🙂'
+      );
+
+      $('.tab-select').value =
+        'conta';
+
+      return;
+
+    }
+
+
+    navigate(val);
+
+  }
+
+
+  function handleSair(){
+
+    closeMenu();
+
+    toast(
+      'Sessão encerrada (demonstração)'
+    );
+
+    navigate('inicio');
+
+  }
+
+
+  /* =========================================================
+     CARROSSEL HERO
+  ========================================================= */
+
+  let heroIndex = 0;
+
+  let heroTimer = null;
+
+
+  function goToSlide(i){
+
+    $all('.hero-slide').forEach(
+      function(slide, index){
+
+        slide.classList.toggle(
+          'active',
+          index === i
+        );
+
+      }
+    );
+
+
+    heroIndex = i;
+
+  }
+
+
+  function restartHeroTimer(){
+
+    clearInterval(heroTimer);
+
+
+    heroTimer =
+      setInterval(
+        function(){
+
+          goToSlide(
+            heroIndex === 0
+              ? 1
+              : 0
+          );
+
+        },
+        4500
+      );
+
+  }
+
+
+  restartHeroTimer();
+
+
+  /* =========================================================
+     SWIPE DO HERO
+     
+     Qualquer direção:
+     esquerda
+     direita
+     cima
+     baixo
+     
+     Como existem apenas 2 imagens,
+     qualquer arrasto significativo
+     troca para a outra.
+  ========================================================= */
+
+  (function(){
+
+    const heroCard =
+      document.getElementById(
+        'hero-card'
+      );
+
+
+    let startX = null;
+
+    let startY = null;
+
+
+    heroCard.addEventListener(
+      'touchstart',
+      function(e){
+
+        if(
+          !e.touches ||
+          !e.touches.length
+        ){
+          return;
+        }
+
+
+        startX =
+          e.touches[0].clientX;
+
+
+        startY =
+          e.touches[0].clientY;
+
+      },
+      {
+        passive:true
+      }
+    );
+
+
+    heroCard.addEventListener(
+      'touchend',
+      function(e){
+
+        if(
+          startX === null ||
+          startY === null ||
+          !e.changedTouches ||
+          !e.changedTouches.length
+        ){
+
+          return;
+
+        }
+
+
+        const endX =
+          e.changedTouches[0].clientX;
+
+
+        const endY =
+          e.changedTouches[0].clientY;
+
+
+        const deltaX =
+          endX - startX;
+
+
+        const deltaY =
+          endY - startY;
+
+
+        const distance =
+          Math.sqrt(
+            deltaX * deltaX +
+            deltaY * deltaY
+          );
+
+
+        /*
+          40px é o mínimo para
+          considerar um swipe.
+        */
+
+        if(distance > 40){
+
+          goToSlide(
+            heroIndex === 0
+              ? 1
+              : 0
+          );
+
+
+          restartHeroTimer();
+
+        }
+
+
+        startX = null;
+
+        startY = null;
+
+      },
+      {
+        passive:true
+      }
+    );
+
+
+  })();
+
+
+  /* =========================================================
+     FALLBACK DE IMAGENS
+  ========================================================= */
+
+  function imgFallback(img){
+
+    img.style.display =
+      'none';
+
+
+    const hint =
+      img.parentElement.querySelector(
+        '.img-hint'
+      );
+
+
+    if(hint){
+
+      hint.classList.add(
+        'show'
+      );
+
+    }
+
+  }
+
+
+  function heroImageFallback(img){
+
+    img.style.display =
+      'none';
+
+
+    const hint =
+      img.parentElement.querySelector(
+        '.hero-image-hint'
+      );
+
+
+    if(hint){
+
+      hint.classList.add(
+        'show'
+      );
+
+    }
+
+  }
+
+
+  function lessonImageFallback(img){
+
+    img.style.display =
+      'none';
+
+
+    const hint =
+      img.parentElement.querySelector(
+        '.lesson-image-hint'
+      );
+
+
+    if(hint){
+
+      hint.classList.add(
+        'show'
+      );
+
+    }
+
+  }
+
+
+  /* =========================================================
+     TOAST
+  ========================================================= */
+
+  let toastTimer;
+
+
+  function toast(msg){
+
+    const t =
+      document.getElementById(
+        'toast'
+      );
+
+
+    t.textContent =
+      msg;
+
+
+    t.classList.add(
+      'show'
+    );
+
+
+    clearTimeout(
+      toastTimer
+    );
+
+
+    toastTimer =
+      setTimeout(
+        function(){
+
+          t.classList.remove(
+            'show'
+          );
+
+        },
+        2200
+      );
+
+  }
+
+
+</script>
+
+</body>
+</html>
