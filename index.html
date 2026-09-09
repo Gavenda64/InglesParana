@@ -256,26 +256,39 @@
     background:var(--ink);
     color:var(--white);
 
-    padding:16px 18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+    padding:22px 18px;
   }
 
   .user-bar-stack .user-name{
-    display:block;
-    margin-bottom:10px;
+    flex:1 1 auto;
+    min-width:0;
+    margin:0;
+
+    font-weight:700;
+    font-size:20px;
+    line-height:1.15;
+    letter-spacing:.25px;
+    text-transform:uppercase;
   }
 
   .level-badge{
     display:inline-block;
+    flex-shrink:0;
 
     background:var(--purple);
     color:var(--ink);
 
-    border-radius:9px;
+    border-radius:8px;
 
-    padding:5px 14px;
+    padding:7px 13px;
 
     font-weight:700;
-    font-size:12.5px;
+    font-size:13px;
 
     letter-spacing:.3px;
     text-transform:uppercase;
@@ -2085,7 +2098,7 @@
 
 
           <span class="badge-dark">
-            10
+            48
           </span>
 
         </div>
@@ -2110,7 +2123,7 @@
 
 
           <span class="badge-dark">
-            2
+            12
           </span>
 
         </div>
@@ -2135,7 +2148,7 @@
 
 
           <span class="badge-dark">
-            1
+            4
           </span>
 
         </div>
